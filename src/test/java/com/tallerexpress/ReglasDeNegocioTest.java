@@ -74,8 +74,10 @@ class ReglasDeNegocioTest {
         OrdenReparacion o = nuevaOrden();
         o.cambiarEstado(EstadoOrden.EN_DIAGNOSTICO, "u", "n", null);
         o.cambiarEstado(EstadoOrden.COTIZADO, "u", "n", null);
+        o.cambiarEstado(EstadoOrden.APROBADO, "u", "n", null);
+        o.cambiarEstado(EstadoOrden.EN_REPARACION, "u", "n", null);
         assertThrows(ApiException.class, () -> o.cambiarEstado(EstadoOrden.EN_DIAGNOSTICO, "u", "n", " "));
-        o.cambiarEstado(EstadoOrden.EN_DIAGNOSTICO, "u", "n", "Cliente pide revisar");
+        o.cambiarEstado(EstadoOrden.EN_DIAGNOSTICO, "u", "n", "Falla adicional detectada");
         assertEquals(EstadoOrden.EN_DIAGNOSTICO, o.getEstado());
     }
 
