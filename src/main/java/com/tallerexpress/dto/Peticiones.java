@@ -3,10 +3,12 @@ package com.tallerexpress.dto;
 import java.util.List;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 /** Cuerpos de las peticiones de la API, agrupados para mantener el proyecto compacto. */
 public final class Peticiones {
@@ -17,19 +19,26 @@ public final class Peticiones {
     public record InicioSesion(@NotBlank String nombreUsuario, @NotBlank String contrasena) {
     }
 
-    public record NuevoCliente(@NotBlank String nombreCompleto, @NotBlank String documentoIdentidad,
-            @NotBlank String telefono, String email, String direccion,
-            @NotBlank String nombreUsuario, @NotBlank String contrasena) {
+    public record NuevoCliente(@NotBlank @Size(max = 120) String nombreCompleto,
+            @NotBlank @Size(max = 20) String documentoIdentidad,
+            @NotBlank @Size(max = 20) String telefono, @Email @Size(max = 120) String email,
+            @Size(max = 200) String direccion,
+            @NotBlank @Size(min = 3, max = 40) String nombreUsuario,
+            @NotBlank @Size(min = 8, max = 72) String contrasena) {
     }
 
-    public record NuevoVehiculo(@NotBlank String clienteId, @NotBlank String placa, @NotBlank String marca,
-            @NotBlank String modelo, @Min(1950) int anio, String color, String vin,
+    public record NuevoVehiculo(@NotBlank String clienteId, @NotBlank @Size(max = 10) String placa,
+            @NotBlank @Size(max = 40) String marca,
+            @NotBlank @Size(max = 40) String modelo, @Min(1950) int anio, @Size(max = 30) String color,
+            @Size(max = 17) String vin,
             @PositiveOrZero int kilometraje) {
     }
 
-    public record NuevoMecanico(@NotBlank String nombreCompleto, @NotBlank String documentoIdentidad,
-            @NotBlank String telefono, @NotEmpty List<String> especialidades,
-            @NotBlank String nombreUsuario, @NotBlank String contrasena) {
+    public record NuevoMecanico(@NotBlank @Size(max = 120) String nombreCompleto,
+            @NotBlank @Size(max = 20) String documentoIdentidad,
+            @NotBlank @Size(max = 20) String telefono, @NotEmpty List<String> especialidades,
+            @NotBlank @Size(min = 3, max = 40) String nombreUsuario,
+            @NotBlank @Size(min = 8, max = 72) String contrasena) {
     }
 
     public record NuevoServicio(@NotBlank String codigo, @NotBlank String nombre, String descripcion,
