@@ -63,7 +63,16 @@ Cotización: `(mano de obra + repuestos) × factor` con factor Baja 1.0 / Media 
 | Entrega y comprobante | `POST /api/ordenes/{id}/entrega` · `GET .../entrega/comprobante` |
 | Estado e historial | `GET /api/ordenes/{id}/estado` |
 
-Colección lista para importar en Postman: `TallerExpress.postman_collection.json`.
+## Pruebas en Postman
+La carpeta [`postman/`](postman) trae la colección con una carpeta por módulo de la API y dos entornos:
+
+| Archivo | Para qué |
+|---|---|
+| `postman/TallerExpress.postman_collection.json` | 83 requests por módulo, con pruebas automáticas del código HTTP |
+| `postman/TallerExpress-Produccion.postman_environment.json` | apunta a `https://tallerexpress-api.onrender.com` |
+| `postman/TallerExpress-Local.postman_environment.json` | apunta a `http://localhost:8080` |
+
+Importar los tres archivos, elegir el entorno y usar *Run collection* en orden. Los tokens se piden solos; en Render gratuito la primera petición puede tardar cerca de un minuto. La colección anterior (`TallerExpress.postman_collection.json`, en la raíz) sigue disponible como flujo simple.
 
 ## Despliegue (Render + MongoDB Atlas)
 1. Subir esta carpeta a un repositorio de GitHub.

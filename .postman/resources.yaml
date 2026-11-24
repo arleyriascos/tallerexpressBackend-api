@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: ba3e2f12-8953-4af7-814f-3df31617615d
+
+localResources:
+  collections:
+    - ../TallerExpress.postman_collection.json
